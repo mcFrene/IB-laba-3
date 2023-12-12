@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-const encryptionKey = "ДИФФЕРЕНЦИАЛЬНОЕУРАВНЕНИЕ"
+const encryptionKey = "АКУЛА"
 
 const PATH = {
     rawText: "./rawText.txt",
@@ -49,7 +49,7 @@ function getKeyIndexes(key, alphabet){
     let keyIndexes = [];
     
     for(let s of key){
-        keyIndexes.push(alphabet.split("").findIndex(el => el === s))
+        keyIndexes.push(alphabet.indexOf(s));
     }
     return keyIndexes;
 }
@@ -74,7 +74,7 @@ function encryptText(text, alphabet, keyIndexes){
     let currentIndex;
 
     for(let i=0; i<text.length; i++){
-        currentIndex = (keyIndexes[i % keyIndexes.length] + alphabet.split("").findIndex(el => el === text[i])) % alphabet.length;
+        currentIndex = (keyIndexes[i % keyIndexes.length] + alphabet.indexOf(text[i])) % alphabet.length;
         result.push(alphabet[currentIndex]);
     }
 
